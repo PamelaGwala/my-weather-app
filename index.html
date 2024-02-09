@@ -9,19 +9,29 @@
   <body background="image.jpg">
     <div class="app">
       <header>
-        <form>
-          <input type="search" placeholder="Enter a city.." required />
-          <input type="submit" value="search" />
+        <form class="searchForm">
+          <input
+            type="search"
+            placeholder="Enter a city.."
+            required
+            class="search-input"
+          />
+          <input type="submit" value="search" class="search-button" />
         </form>
       </header>
       <main>
         <h1>Durban</h1>
-        <p>
-          Tuesday 12:30, Scattered Clouds
-          <br />
-          Humidity: 66%, Wind: 3.25km/h
-        </p>
-        ⛅ 28℃
+        <div id="data">
+          <p>
+            Tuesday <strong>12:30</strong>, Scattered Clouds
+            <br />
+            Humidity:<strong> 66%</strong>, Wind:<strong> 3.25km/h</strong>
+          </p>
+          <div class="temp-container">
+          <div class="degree-icon">⛅</div>
+          <div id="degree">28</div>
+          <div class="celsius">℃</div>
+        </div>
       </main>
 
       <footer>
