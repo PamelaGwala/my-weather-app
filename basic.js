@@ -1,8 +1,38 @@
 function updateWeather(response) {
   let temperature = document.querySelector("#degree");
-  let degree = response.data.degree.current;
+  let degree = response.data.temperature.current;
+  let condition = document.querySelector("#description");
+  let humidity = document.querySelector("#humidity");
+  let wind = document.querySelector("#wind");
+  let time = document.querySelector("#time");
+  let date = new date(response.data.time * 1000);
+  let iconElement = document.querySelector("#icon");
 
+  time.innerHTML = formatDate(date);
+  condition.innerHTML = response.data.condition.description;
   temperature.innerHTML = Math.round(degree);
+  humidity.innerHTML = `${response.data.temperature.humidity}%`;
+  wind.innerHTML = `${response.data.wind.speed}km/h`;
+  iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="degree-icon" />`;
+}
+function formatDate(date) {
+  let minutes = date.getMinutes();
+  let hours = date.getHours();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${day} ${hours}:${minutes}`;
 }
 
 function callCity(city) {
