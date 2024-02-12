@@ -5,8 +5,8 @@ function updateWeather(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   let time = document.querySelector("#time");
-  let date = new date(response.data.time * 1000);
-  let iconElement = document.querySelector("#icon");
+  let date = new Date(response.data.time * 1000);
+  let iconElement = document.querySelector(".degree-icon");
 
   time.innerHTML = formatDate(date);
   condition.innerHTML = response.data.condition.description;
