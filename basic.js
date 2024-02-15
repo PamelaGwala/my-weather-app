@@ -50,5 +50,25 @@ function handleSearch(event) {
 
   callCity(searchInput.value);
 }
+function displayForecast() {
+  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+  let forecastHtml = "";
+
+  days.forEach(function (day) {
+    forecastHtml =
+      forecastHtml +
+      `
+      <div class="day">${day}</div>
+            <div class="weather-icon">
+              <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="36"/>
+            </div>
+            <div class="weather-temp">
+               <strong>18°</strong> 12°</div>
+               `;
+  });
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = forecastHtml;
+}
 let searchForm = document.querySelector("#searchForm");
 searchForm.addEventListener("submit", handleSearch);
+displayForecast();
