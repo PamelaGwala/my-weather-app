@@ -77,7 +77,7 @@ function displayForecast(response) {
           <div class="weather-temp">
             <strong>${Math.round(
               day.temperature.maximum
-            )}</strong> ${Math.round(day.temperature.minimum)}
+            )}° </strong>  ${Math.round(day.temperature.minimum)}°
           </div>
         </div>
       `;
