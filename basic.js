@@ -57,14 +57,20 @@ function displayForecast() {
   days.forEach(function (day) {
     forecastHtml =
       forecastHtml +
-      `
-      <div class="day">${day}</div>
-            <div class="weather-icon">
-              <img src="http://openweathermap.org/img/wn/50d@2x.png" alt="" width="36"/>
-            </div>
-            <div class="weather-temp">
-               <strong>18°</strong> 12°</div>
-               `;
+      ` <div id="forecast">
+          <div class="day">${day}</div>
+          <div class="weather-icon">
+            <img
+              src="http://openweathermap.org/img/wn/50d@2x.png"
+              alt=""
+              width="36"
+            />
+          </div>
+          <div class="weather-temp">
+            <strong>18°</strong> 12°
+          </div>
+        </div>
+      `;
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
