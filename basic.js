@@ -52,37 +52,39 @@ function handleSearch(event) {
 
   callCity(searchInput.value);
 }
+function forecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"];
+
+  return days[date.getDay()];
+}
 function getForecast(city) {
   let apiKey = "6c26cba55d4084oada97f3t4bbd04e3d";
   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
   axios(apiUrl).then(displayForecast);
 }
 function displayForecast(response) {
-  let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      ` <div id="forecast">
-          <div class="day">${day}</div>
-          <div class="weather-icon">
-            <img
-              src="http://openweathermap.org/img/wn/50d@2x.png"
-              alt=""
-              width="36"
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `<div id="forecast">
+          <div class="day">${forecastDay(day.time)}</div>
+            <img src="${day.condition.icon_url}"class="weather-icon"
             />
-          </div>
           <div class="weather-temp">
-            <strong>18°</strong> 12°
+            <strong>${Math.round(
+              day.temperature.maximum
+            )}</strong> ${Math.round(day.temperature.minimum)}
           </div>
         </div>
       `;
+    }
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
 let searchForm = document.querySelector("#searchForm");
 searchForm.addEventListener("submit", handleSearch);
-
-displayForecast();
