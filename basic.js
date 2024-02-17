@@ -16,6 +16,12 @@ function updateWeather(response) {
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="degree-icon" />`;
 
   getForecast(response.data.city);
+
+  let now = new Date();
+  let currentYear = date.getFullYear();
+  let currentDay = days[date.getDay()];
+  let currentMonth = months[date.getMonth()];
+  let currentDate = date.getDate();
 }
 function formatDate(date) {
   let minutes = date.getMinutes();
@@ -29,6 +35,7 @@ function formatDate(date) {
     "Friday",
     "Saturday",
   ];
+
   let day = days[date.getDay()];
   if (minutes < 10) {
     minutes = `0${minutes}`;
@@ -36,7 +43,6 @@ function formatDate(date) {
 
   return `${day} ${hours}:${minutes}`;
 }
-
 function callCity(city) {
   let apiKey = "6c26cba55d4084oada97f3t4bbd04e3d";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
@@ -45,6 +51,7 @@ function callCity(city) {
 
 function handleSearch(event) {
   event.preventDefault();
+
   let searchInput = document.querySelector("#search-form-input");
   let cityElement = document.querySelector("#city");
 
@@ -88,3 +95,4 @@ function displayForecast(response) {
 }
 let searchForm = document.querySelector("#searchForm");
 searchForm.addEventListener("submit", handleSearch);
+callCity("Durban");
